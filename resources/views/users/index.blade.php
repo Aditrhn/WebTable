@@ -48,6 +48,7 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
+                                    <th scope="col">No</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
                                     <th scope="col"></th>
@@ -56,19 +57,20 @@
                             <tbody>
                                 @foreach ($user as $users)
                                 <tr>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $users->name }}</td>
                                     <td>
                                         <a href="mailto:{{ $users->email }}">{{ $users->email }}</a>
                                     </td>
                                     <td class="text-right">
                                         <div class="dropdown">
-                                            <a class="btn btn-md btn-icon-only text-light" href="#" role="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <a class="btn btn-md btn-icon-only text-light" href="{{ URL::route('edit.user',$users->id) }}" aria-haspopup="true" aria-expanded="false">
                                                 <i class="far fa-edit" style="color: #5e72e4"></i>
                                             </a>
-                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                <a class="dropdown-item" href="">Edit</a>
-                                            </div>
+                                            <a class="btn btn-md btn-icon-only text-light" href="#" role="button"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="far fa-trash-alt" style="color: red"></i>
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>

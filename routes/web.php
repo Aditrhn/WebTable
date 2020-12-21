@@ -28,12 +28,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::get('user/create', 'App\Http\Controllers\UserController@create')->name('create.user');
 	Route::post('user/create/success', 'App\Http\Controllers\UserController@store')->name('create.success');
-	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
-	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
-	Route::get('upgrade', function () {return view('pages.upgrade');})->name('upgrade'); 
-	 Route::get('map', function () {return view('pages.maps');})->name('map');
-	 Route::get('icons', function () {return view('pages.icons');})->name('icons'); 
 	 Route::get('table-list', function () {return view('pages.tables');})->name('table');
-	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
+	Route::get('edit/{id}', 'App\Http\Controllers\UserController@edit')->name('edit.user');
+	Route::post('edit/update/{id}', 'App\Http\Controllers\UserController@update')->name('update.user');
+	Route::get('home/create_table', 'App\Http\Controllers\TableController@create')->name('table.create');
+	Route::post('home/create_table/success', 'App\Http\Controllers\TableController@store')->name('table.success');
 });
 
