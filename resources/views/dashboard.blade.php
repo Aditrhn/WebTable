@@ -84,76 +84,32 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">
-                                        1
-                                    </th>
-                                    <th>
-                                        Jumlah Penduduk Bangka Tengah 2010-2020, 2010-2020
-                                    </th>
-                                    <td>
-                                        BPS
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        2
-                                    </th>
-                                    <th>
-                                        Laju Pertumbuhan Penduduk Menurut Kecamatan Di Kab Bangka Tengah, 2010-2020
-                                    </th>
-                                    <td>
-                                        BPS
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-arrow-down text-warning mr-3"></i> 46,53%
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        3
-                                    </th>
-                                    <th>
-                                        Proyeksi Penduduk Menurut Kecamatan, 2012-2019
-                                    </th>
-                                    <td>
-                                        BPS
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-arrow-down text-warning mr-3"></i> 36,49%
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        4
-                                    </th>
-                                    <th>
-                                        Jumlah Penduduk Menurut Usia, Jenis Kelamin dan Rasio , 2017-2019
-                                    </th>
-                                    <td>
-                                        BPS
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-arrow-up text-success mr-3"></i> 50,87%
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        5
-                                    </th>
-                                    <th>
-                                        Distribusi & Kepadatan Penduduk, 2017-2019
-                                    </th>
-                                    <td>
-                                        BPS
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-arrow-down text-danger mr-3"></i> 46,53%
-                                    </td>
-                                </tr>
+                                @forelse ($tableName as $tableNames)
+                                    <tr>
+                                        <th scope="row">
+                                            {{ $loop->iteration }}
+                                        </th>
+                                        <th>
+                                            {{ $tableNames->name }}
+                                        </th>
+                                        <td>
+                                            BPS
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-md btn-icon-only text-light" href="#" aria-haspopup="true" aria-expanded="false">
+                                                <i class="far fa-edit" style="color: #5e72e4"></i>
+                                            </a>
+                                            <a class="btn btn-md btn-icon-only text-light" href="#" role="button"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="far fa-trash-alt" style="color: red"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td rowspan="4">Belum ada Data</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

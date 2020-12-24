@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TableName;
+
 class HomeController extends Controller
 {
     /**
@@ -21,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
-        return view('dashboard');
+        $tableName = TableName::select('*')->get();
+        return view('dashboard', \compact('tableName'));
     }
 }

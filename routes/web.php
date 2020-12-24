@@ -28,10 +28,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::get('user/create', 'App\Http\Controllers\UserController@create')->name('create.user');
 	Route::post('user/create/success', 'App\Http\Controllers\UserController@store')->name('create.success');
+	Route::post('user/delete/{id}', 'App\Http\Controllers\UserController@delete')->name('user.delete');
 	 Route::get('table-list', function () {return view('pages.tables');})->name('table');
 	Route::get('edit/{id}', 'App\Http\Controllers\UserController@edit')->name('edit.user');
 	Route::post('edit/update/{id}', 'App\Http\Controllers\UserController@update')->name('update.user');
 	Route::get('home/create_table', 'App\Http\Controllers\TableController@create')->name('table.create');
-	Route::post('home/create_table/success', 'App\Http\Controllers\TableController@store')->name('table.success');
+	Route::get('home/create_table/rowcol', 'App\Http\Controllers\TableController@rowcol')->name('table.rowcol');
+	Route::post('home/create_table/success', 'App\Http\Controllers\TableController@success')->name('table.success');
 });
 

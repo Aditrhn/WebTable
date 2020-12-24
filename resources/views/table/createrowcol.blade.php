@@ -17,9 +17,9 @@
                                         <li class="breadcrumb-item"><a
                                                 href="{{ URL::route('home') }}"><i
                                                     class="fas fa-home"></i></a></li>
-                                        <li class="breadcrumb-item active"><a
-                                                href="#">Create Table</a></li>
-                                        {{-- <li class="breadcrumb-item active" aria-current="page">Edit User</li> --}}
+                                        <li class="breadcrumb-item"><a
+                                                href="{{ URL::route('table.create') }}">Create Table</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Add Row & Column</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -36,7 +36,7 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">Input Judul Table</h3>
+                                <h3 class="mb-0">Input Baris dan Kolom</h3>
                             </div>
                         </div>
                     </div>
@@ -73,51 +73,47 @@
                             </tbody>
                         </table>
                     </div> --}}
-                    <form action="{{ URL::route('table.rowcol') }}" method="GET">
+                    <form action="{{ URL::route('table.success') }}" method="POST">
                         {{ csrf_field() }}
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <label>Judul Tabel</label>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control form-control-alternative"
-                                        id="exampleFormControlInput1" placeholder="judul tabel" name="judul">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-goup">
-                                    <div class="col-md-12">
-                                        <label>Jumlah Kolom</label>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control form-control-alternative"
-                                        id="exampleFormControlInput1" placeholder="0" name="jmlcol">
+                            @for ($i = 0; $i < $jmlcol; $i++)
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label>Kolom {{$i+1}}</label>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control form-control-alternative"
+                                            id="exampleFormControlInput1" placeholder="Kolom {{$i+1}}" name="kolom{{$i+1}}">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endfor
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <label>Jumlah Baris</label>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control form-control-alternative"
-                                        id="exampleFormControlInput1" placeholder="0" name="jmlrow">
+                            @for ($j = 0; $j < $jmlrow; $j++)
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <label>Baris {{$j+1}}</label>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control form-control-alternative"
+                                            id="exampleFormControlInput1" placeholder="Baris {{$j+1}}" name="baris{{$j+1}}">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endfor
                         </div>
+                        <input type="text" value="{{ $tableName }}" name="name" hidden>
+                        <input type="text" value="{{ $i+1 }}" name="jmlcol" hidden>
+                        <input type="text" value="{{ $j+1 }}" name="jmlrow" hidden>
                     
                         <div class="card-footer py-4">
                             <nav class="d-flex justify-content-end" aria-label="...">
                                 <div class="col-4 text-right">
                                     <a href="{{ URL::route('home') }}" class="btn btn-md btn-secondary">Cancel</a>
-                                    <button class="btn btn-md btn-primary" type="submit">Next</button>
+                                    <button class="btn btn-md btn-primary" type="submit">Submit</button>
                                 </div>
                             </nav>
                         </div>

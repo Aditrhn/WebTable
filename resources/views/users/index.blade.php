@@ -64,11 +64,12 @@
                                     </td>
                                     <td class="text-right">
                                         <div class="dropdown">
-                                            <a class="btn btn-md btn-icon-only text-light" href="{{ URL::route('edit.user',$users->id) }}" aria-haspopup="true" aria-expanded="false">
+                                            <a class="btn btn-md btn-icon-only text-light" href="{{ URL::route('edit.user',$users->id) }}" 
+                                                aria-haspopup="true" aria-expanded="false">
                                                 <i class="far fa-edit" style="color: #5e72e4"></i>
                                             </a>
-                                            <a class="btn btn-md btn-icon-only text-light" href="#" role="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <a class="btn btn-md btn-icon-only text-light" href="{{ URL::route('user.delete',$users->id) }}" 
+                                                aria-haspopup="true" aria-expanded="false">
                                                 <i class="far fa-trash-alt" style="color: red"></i>
                                             </a>
                                         </div>
