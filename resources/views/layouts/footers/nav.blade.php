@@ -1,5 +1,5 @@
 <div class="row align-items-center justify-content-xl-between">
-    {{-- <div class="col-xl-6">
+    <div class="col-xl-6">
         <div class="copyright text-center text-xl-left text-muted">
             &copy; {{ now()->year }} <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a> &amp;
             <a href="https://www.updivision.com" class="font-weight-bold ml-1" target="_blank">Updivision</a>
@@ -23,5 +23,7 @@
                 <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
             </li>
         </ul>
-    </div> --}}
+    </div>
+    <script src="/assets/vendor/nouislider/distribute/nouislider.min.js"></script>
+    <script src="assets/vendor/select2/dist/js/select2.min.js"></script>
 </div>

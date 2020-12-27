@@ -32,8 +32,9 @@ Route::group(['middleware' => 'auth'], function () {
 	 Route::get('table-list', function () {return view('pages.tables');})->name('table');
 	Route::get('edit/{id}', 'App\Http\Controllers\UserController@edit')->name('edit.user');
 	Route::post('edit/update/{id}', 'App\Http\Controllers\UserController@update')->name('update.user');
-	Route::get('home/create_table', 'App\Http\Controllers\TableController@create')->name('table.create');
-	Route::get('home/create_table/rowcol', 'App\Http\Controllers\TableController@rowcol')->name('table.rowcol');
-	Route::post('home/create_table/success', 'App\Http\Controllers\TableController@success')->name('table.success');
+	Route::get('home/table/create', 'App\Http\Controllers\TableController@create')->name('table.create');
+	Route::get('home/table/create/rowcol', 'App\Http\Controllers\TableController@rowcol')->name('table.rowcol');
+	Route::post('home/table/create/success', 'App\Http\Controllers\TableController@success')->name('table.success');
+	Route::get('home/table/detail', 'App\Http\Controllers\TableController@detail')->name('table.detail');
 });
 

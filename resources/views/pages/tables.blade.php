@@ -61,7 +61,7 @@
 
                 <div class="collapse show" id="navbar-examples">
                     <ul class="nav nav-sm flex-column">
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('profile.edit') }}">
                                 {{ __('User profile') }}
                             </a>
@@ -70,12 +70,12 @@
                             <a class="nav-link" href="{{ route('user.index') }}">
                                 {{ __('User Management') }}
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </li>
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="{{ route('icons') }}">
                     <i class="ni ni-planet text-blue"></i> {{ __('Icons') }}
                 </a>
@@ -84,18 +84,18 @@
                 <a class="nav-link" href="{{ route('map') }}">
                     <i class="ni ni-pin-3 text-orange"></i> {{ __('Maps') }}
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('table') }}">
                   <i class="ni ni-bullet-list-67 text-default"></i>
                   <span class="nav-link-text">Tables</span>
                 </a>
               </li>
-            <li class="nav-item mb-5 mr-4 ml-4 pl-1 bg-danger" style="position: absolute; bottom: 0;">
+            {{-- <li class="nav-item mb-5 mr-4 ml-4 pl-1 bg-danger" style="position: absolute; bottom: 0;">
                 <a class="nav-link text-white" href="{{route('upgrade')}}">
                     <i class="ni ni-cloud-download-95"></i> Upgrade to PRO
                 </a>
-            </li>
+            </li> --}}
         </ul>
           <!-- Divider -->
           <hr class="my-3">
@@ -715,32 +715,6 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
-            <!-- Card footer -->
-            <div class="card-footer py-4">
-              <nav aria-label="...">
-                <ul class="pagination justify-content-end mb-0">
-                  <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">
-                      <i class="fas fa-angle-left"></i>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                  </li>
-                  <li class="page-item active">
-                    <a class="page-link" href="#">1</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">
-                      <i class="fas fa-angle-right"></i>
-                      <span class="sr-only">Next</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
             </div>
           </div>
         </div>
