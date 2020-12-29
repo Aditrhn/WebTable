@@ -21867,3 +21867,7 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle
 
     height: 3px;
 }
+
+#pageSelectRow {
+    margin: 0 1px;
+}

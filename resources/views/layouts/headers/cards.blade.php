@@ -103,8 +103,8 @@
                                 </nav>
                             </div>
                             <div class="col-lg-6 col-5 text-right">
-                                <a href="{{ URL::route('table.create') }}" class="btn btn-sm btn-neutral">New</a>
-                                <a href="#" class="btn btn-sm btn-neutral">Filters</a>
+                                <a href="{{ URL::route('table.create') }}" class="btn btn-sm btn-neutral">New Table</a>
+                                <a href="{{ URL::route('table.add') }}" class="btn btn-sm btn-neutral">Add Table</a>
                             </div>
                         </div>
                     </div>

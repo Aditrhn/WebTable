@@ -36,5 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('home/table/create/rowcol', 'App\Http\Controllers\TableController@rowcol')->name('table.rowcol');
 	Route::post('home/table/create/success', 'App\Http\Controllers\TableController@success')->name('table.success');
 	Route::get('home/table/detail', 'App\Http\Controllers\TableController@detail')->name('table.detail');
+	Route::get('home/table/add', 'App\Http\Controllers\TableController@add')->name('table.add');
+	Route::get('home/table/select', 'App\Http\Controllers\TableController@select')->name('table.select');
 });
 

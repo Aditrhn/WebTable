@@ -50,4 +50,16 @@ class TableController extends Controller
     {
         return view('table.detail');
     }
+    public function add()
+    {
+        return view('table.add');
+    }
+    public function select(Request $request)
+    {
+        $jmlcol = $request->jmlcol;
+        $col = Column::select('id', 'column_name')->where('user_id', '=', auth()->user()->id)->get();
+        $jmlrow = $request->jmlrow;
+        $row = Row::select('id', 'row_name')->where('user_id', '=', auth()->user()->id)->get();
+        return view('table.select', \compact('jmlcol', 'jmlrow', 'col', 'row'));
+    }
 }
