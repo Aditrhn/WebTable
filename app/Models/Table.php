@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Row extends Model
+class Table extends Model
 {
     use HasFactory;
-    protected $fillable = ['row_name', 'user_id'];
+    protected $fillable = ['user_id', 'table_name_id', 'row_id', 'column_id'];
     public $timestamps = true;
 }

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\TableName;
 use App\Models\Row;
 use App\Models\Column;
+use App\Models\Table;
 
 class TableController extends Controller
 {
@@ -25,24 +25,24 @@ class TableController extends Controller
     }
     public function success(Request $request)
     {
-        $tableName = new TableName;
-        $row = new Row;
-        $col = new Column;
-        $tableName->name = $request->name;
-        $tableName->user_id = auth()->user()->id;
-        $tableName->save();
+        TableName::create([
+            'name' => $request->name,
+            'user_id' => auth()->user()->id,
+        ]);
 
         for ($i=1; $i < $request->jmlrow ; $i++) { 
             $nomor = "baris" . $i;
-            $row->row_name = $request->$nomor;
-            $row->user_id = auth()->user()->id;
-            $row->save();
+            Row::create([
+                'row_name' => $request->$nomor,
+                'user_id' => auth()->user()->id,
+            ]);
         }
         for ($i=1; $i < $request->jmlcol ; $i++) { 
             $nomor = "kolom" . $i;
-            $col->column_name = $request->$nomor;
-            $col->user_id = auth()->user()->id;
-            $col->save();
+            Column::create([
+                'column_name' => $request->$nomor,
+                'user_id' => auth()->user()->id,
+            ]);
         }
         return redirect('home');
     }
@@ -56,10 +56,42 @@ class TableController extends Controller
     }
     public function select(Request $request)
     {
+        $tableName = TableName::select('id', 'name')->where('user_id', '=',  auth()->user()->id)->get();
         $jmlcol = $request->jmlcol;
         $col = Column::select('id', 'column_name')->where('user_id', '=', auth()->user()->id)->get();
         $jmlrow = $request->jmlrow;
         $row = Row::select('id', 'row_name')->where('user_id', '=', auth()->user()->id)->get();
-        return view('table.select', \compact('jmlcol', 'jmlrow', 'col', 'row'));
+        return view('table.select', \compact('jmlcol', 'jmlrow', 'col', 'row', 'tableName'));
+    }
+    public function store(Request $request)
+    {
+        if ($request->jmlcol > $request->jmlrow) {
+            $a = $request->jmlcol;
+            $b = $request->jmlrow;
+        } else {
+            $a = $request->jmlrow;
+            $b = $request->jmlcol;
+        }
+        for ($i=1; $i < $a; $i++) { 
+            if ($a == $request->jmlcol) {
+                $val_a = "kolom" . $i;
+            } else {
+                $val_a = "baris" . $i;
+            }
+            for ($j=1; $j < $b; $j++) { 
+                if ($b == $request->jmlrow) {
+                    $val_b = "baris" . $j;
+                } else {
+                    $val_b = "kolom" . $j;
+                }
+                Table::create([
+                    'user_id' => auth()->user()->id,
+                    'table_name_id' => $request->judul,
+                    'row_id' => $request->$val_b,
+                    'column_id' => $request->$val_a,
+                ]);
+            }
+        }
+        return redirect('home');
     }
 }

@@ -18,7 +18,8 @@
                                                 href="{{ URL::route('home') }}"><i
                                                     class="fas fa-home"></i></a></li>
                                         <li class="breadcrumb-item"><a
-                                                href="{{ URL::route('table.add') }}">Add Table</a></li>
+                                                href="{{ URL::route('table.add') }}">Add Table</a>
+                                        </li>
                                         <li class="breadcrumb-item active" aria-current="page">Select Row & Column</li>
                                     </ol>
                                 </nav>
@@ -40,62 +41,64 @@
                             </div>
                         </div>
                     </div>
-                    <form action="#" method="POST">
+                    <form action="{{ URL::route('select.success') }}" method="POST">
                         {{ csrf_field() }}
-                        <div class="row">
+                        <div class="row" id="pageSelectRow">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <div class="col-md-12">
-                                        <label>Judul Tabel</label>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control form-control-alternative"
-                                        id="exampleFormControlInput1" placeholder="judul tabel" name="judul">
-                                    </div>
+                                    <label>Judul Tabel</label>
+                                    <select class="form-control" id="exampleFormControlSelect1" name="judul">
+                                        @forelse($tableName as $tableNames)
+                                            <option value="{{ $tableNames->id }}">{{ $tableNames->name }}</option>
+                                        @empty
+                                            <option value="">Belum Ada Data.</option>
+                                        @endforelse
+                                    </select>
                                 </div>
                             </div>
                         </div>
                         <div class="row" id="pageSelectRow">
-                            @for ($i = 0; $i < $jmlcol; $i++)
+                            @for($i = 0; $i < $jmlcol; $i++)
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <div class="form-group">
-                                            <label>Kolom {{$i+1}}</label>
-                                            <select class="form-control" id="exampleFormControlSelect1" name="kolom{{$i+1}}">
-                                                @forelse ($col as $cols)
-                                                    <option value="{{ $cols->id }}">{{ $cols->column_name }}</option>
-                                                @empty
-                                                    <option value="">Belum Ada Data.</option>
-                                                @endforelse
-                                            </select>
-                                        </div>
+                                        <label>Kolom {{ $i+1 }}</label>
+                                        <select class="form-control" id="exampleFormControlSelect1"
+                                            name="kolom{{ $i+1 }}">
+                                            @forelse($col as $cols)
+                                                <option value="{{ $cols->id }}">{{ $cols->column_name }}</option>
+                                            @empty
+                                                <option value="">Belum Ada Data.</option>
+                                            @endforelse
+                                        </select>
                                     </div>
                                 </div>
                             @endfor
                         </div>
                         <div class="row" id="pageSelectRow">
-                            @for ($j = 0; $j < $jmlrow; $j++)
+                            @for($j = 0; $j < $jmlrow; $j++)
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <div class="form-group">
-                                            <label>Baris {{$j+1}}</label>
-                                            <select class="form-control" id="exampleFormControlSelect1" name="baris{{$i+1}}">
-                                                @forelse ($row as $rows)
-                                                    <option value="{{ $rows->id }}">{{ $rows->row_name }}</option>
-                                                @empty
-                                                    <option value="">Belum Ada Data.</option>
-                                                @endforelse
-                                            </select>
-                                        </div>
+                                        <label>Baris {{ $j+1 }}</label>
+                                        <select class="form-control" id="exampleFormControlSelect1"
+                                            name="baris{{ $j+1 }}">
+                                            @forelse($row as $rows)
+                                                <option value="{{ $rows->id }}">{{ $rows->row_name }}</option>
+                                            @empty
+                                                <option value="">Belum Ada Data.</option>
+                                            @endforelse
+                                        </select>
                                     </div>
                                 </div>
                             @endfor
                         </div>
-                    
+                        <input type="text" value="{{ $i+1 }}" name="jmlcol" hidden>
+                        <input type="text" value="{{ $j+1 }}" name="jmlrow" hidden>
+
                         <div class="card-footer py-4">
                             <nav class="d-flex justify-content-end" aria-label="...">
                                 <div class="col-4 text-right">
-                                    <a href="{{ URL::route('home') }}" class="btn btn-md btn-secondary">Cancel</a>
+                                    <a href="{{ URL::route('home') }}"
+                                        class="btn btn-md btn-secondary">Cancel</a>
                                     <button class="btn btn-md btn-primary" type="submit">Submit</button>
                                 </div>
                             </nav>

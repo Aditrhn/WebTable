@@ -19,7 +19,7 @@ class CreateTabelTable extends Migration
             $table->foreignId('table_name_id')->constrained('table_names');
             $table->foreignId('row_id')->constrained('rows');
             $table->foreignId('column_id')->constrained('columns');
-            $table->string('data');
+            $table->string('data')->nullable();
             $table->timestamps();
         });
     }

@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $tableName = TableName::select('*')->get();
+        $tableName = TableName::select('id', 'name')->get();
         return view('dashboard', \compact('tableName'));
     }
 }
