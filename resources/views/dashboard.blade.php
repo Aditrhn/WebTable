@@ -90,7 +90,7 @@
                                             {{ $loop->iteration }}
                                         </th>
                                         <th>
-                                            {{ $tableNames->name }}
+                                            <a href="{{URL::route('table.detail', $tableNames->id)}}">{{ $tableNames->name }}</a>
                                         </th>
                                         <td>
                                             BPS

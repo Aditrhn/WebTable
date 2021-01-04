@@ -7,6 +7,7 @@ use App\Models\TableName;
 use App\Models\Row;
 use App\Models\Column;
 use App\Models\Table;
+use Illuminate\Support\Facades\DB;
 
 class TableController extends Controller
 {
@@ -46,9 +47,27 @@ class TableController extends Controller
         }
         return redirect('home');
     }
-    public function detail()
+    public function detail($id)
     {
-        return view('table.detail');
+        $title = DB::table('table_names')
+            ->join('tables', 'tables.table_name_id', '=', 'table_names.id')
+            ->select('table_names.name')
+            ->where('table_names.id', '=', $id)
+            ->first()
+            ->name;
+        $col = DB::table('columns')
+            ->join('tables', 'tables.column_id', '=', 'columns.id')
+            ->select('columns.column_name')
+            ->where('tables.table_name_id', '=', $id)
+            ->distinct()
+            ->get();
+        $row = DB::table('rows')
+            ->join('tables', 'tables.row_id', '=', 'rows.id')
+            ->select('rows.row_name')
+            ->where('tables.table_name_id', '=', $id)
+            ->distinct()
+            ->get();
+        return view('table.detail', \compact('title', 'col', 'row'));
     }
     public function add()
     {

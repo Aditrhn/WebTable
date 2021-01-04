@@ -113,7 +113,8 @@
                             <nav class="d-flex justify-content-end" aria-label="...">
                                 <div class="col-4 text-right">
                                     <a href="{{ URL::route('home') }}" class="btn btn-md btn-secondary">Cancel</a>
-                                    <button class="btn btn-md btn-primary" type="submit">Submit</button>
+                                    <button class="btn btn-md btn-success" type="submit">Save</button>
+                                    <button class="btn btn-md btn-primary" type="submit">Publish</button>
                                 </div>
                             </nav>
                         </div>
