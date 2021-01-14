@@ -37,7 +37,7 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h3 class="mb-0">Pilih Baris dan Kolom</h3>
+                                <h3 class="mb-0">Pilih Judul, Baris, dan Kolom</h3>
                             </div>
                         </div>
                     </div>
@@ -57,39 +57,54 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" id="pageSelectRow">
-                            @for($i = 0; $i < $jmlcol; $i++)
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Kolom {{ $i+1 }}</label>
-                                        <select class="form-control" id="exampleFormControlSelect1"
-                                            name="kolom{{ $i+1 }}">
-                                            @forelse($col as $cols)
-                                                <option value="{{ $cols->id }}">{{ $cols->column_name }}</option>
-                                            @empty
-                                                <option value="">Belum Ada Data.</option>
-                                            @endforelse
-                                        </select>
-                                    </div>
-                                </div>
-                            @endfor
-                        </div>
-                        <div class="row" id="pageSelectRow">
-                            @for($j = 0; $j < $jmlrow; $j++)
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Baris {{ $j+1 }}</label>
-                                        <select class="form-control" id="exampleFormControlSelect1"
-                                            name="baris{{ $j+1 }}">
-                                            @forelse($row as $rows)
-                                                <option value="{{ $rows->id }}">{{ $rows->row_name }}</option>
-                                            @empty
-                                                <option value="">Belum Ada Data.</option>
-                                            @endforelse
-                                        </select>
-                                    </div>
-                                </div>
-                            @endfor
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>
+                                            <select class="form-control" id="exampleFormControlSelect1" name="kolomkiri">
+                                                <option value="">Pilih Judul Kolom Ini</option>
+                                            </select>
+                                        </th>
+                                        @for ($i = 0; $i < $jmlcol; $i++)
+                                            <th>
+                                                <select class="form-control" id="exampleFormControlSelect1" name="kolom{{ $i+1 }}">
+                                                    <option value="">Pilih Nama Kolom</option>
+                                                    @forelse($col as $cols)
+                                                        <option value="{{ $cols->id }}">{{ $cols->column_name }}</option>
+                                                    @empty
+                                                        <option value="">Belum Ada Data.</option>
+                                                    @endforelse
+                                                </select>
+                                            </th>
+                                        @endfor
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for ($j = 0; $j < $jmlrow; $j++)
+                                        <tr>
+                                            <th scope="row">
+                                                <select class="form-control" id="exampleFormControlSelect1" name="baris{{ $j+1 }}">
+                                                    <option value="">Pilih Nama Baris</option>
+                                                    @forelse($row as $rows)
+                                                        <option value="{{ $rows->id }}">{{ $rows->row_name }}</option>
+                                                    @empty
+                                                        <option value="">Belum Ada Data.</option>
+                                                    @endforelse
+                                                </select>
+                                            </th>
+                                            @for ($k = 0; $k < $jmlcol; $k++)
+                                                <th class="budget">
+                                                    <div class="col-md-12">
+                                                        <input type="text" class="form-control form-control-alternative"
+                                                        id="exampleFormControlInput1" placeholder="Isi Data" name="Data{{$k+1}}">
+                                                    </div>
+                                                </th>
+                                            @endfor
+                                        </tr>
+                                    @endfor
+                                </tbody>
+                            </table>
                         </div>
                         <input type="text" value="{{ $i+1 }}" name="jmlcol" hidden>
                         <input type="text" value="{{ $j+1 }}" name="jmlrow" hidden>
